@@ -46,6 +46,7 @@ export default defineComponent({
 			const data = getDatasetByTarget(event, 'idx') as any;
 			if (data && data.dataset.idx) {
 				const targetData = store.chatList[data.dataset.idx];
+				targetData.unReadCount = 0;
 				// 请求与xx的聊天记录
 				applyChat(targetData);
 			}

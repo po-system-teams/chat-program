@@ -55,6 +55,14 @@ const louChatStore = defineStore('louChat', () => {
 			changeSideModel(SideShowMode.CHAT);
 		}
 	}
+	function cleanChatList(targetData: connectUser) {
+		if (targetData) {
+			const index = chatList.findIndex((item) => item.userId === targetData.userId);
+			// 移动到最前面
+			chatList[index].unReadCount = 0;
+			changeSideModel(SideShowMode.CHAT);
+		}
+	}
 	// 获取某个聊天用户信息
 	function getChatData(userId: number = targetChatUserId.value) {
 		return chatList.find((item) => item.userId === userId);

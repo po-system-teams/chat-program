@@ -27,7 +27,7 @@ export default defineComponent({
 				<div class="side_item_box">
 					<div class="side_item_avatar">
 						<img class="desabled-drag" src={new URL('@/assets/louChat/default_avatar.jpg', import.meta.url).href} />
-						{props.showFlag && props.userData.unReadCount && <span class="un_read_flag">{props.userData.unReadCount}</span>}
+						{props.showFlag && props.userData.unReadCount ? <span class="un_read_flag">{props.userData.unReadCount}</span> : null}
 					</div>
 					<div class="side_item_info">
 						<div class="item_top">

@@ -5,14 +5,13 @@ import './assets/main.css';
 import { createPinia } from 'pinia';
 import { createApp } from 'vue';
 
+import axios from '@/plugin/service';
 import '@common/iconfont/iconfont.css';
 import '@common/iconfont/iconfont.js';
-import axios from '@common/service/service';
 import App from './App';
 import router from './router';
 
 const app = createApp(App);
-
 app.config.globalProperties.$axios = axios;
 app.use(createPinia());
 app.use(router);

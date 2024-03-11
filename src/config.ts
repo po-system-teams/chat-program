@@ -1,8 +1,8 @@
 export const __POWERED_BY_WUJIE__ = true; // 是否启用无界
 
 export const serverConfig = {
-	host: 'http://192.168.0.124',
-	port: 3000,
+	host: 'http://112.74.49.183',
+	port: 8112,
 };
 
 export const wujieAppList: any = {

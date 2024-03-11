@@ -47,22 +47,23 @@ export default defineComponent({
 			return store.getChatData();
 		});
 		// 发送消息
-		function sendMessage() {
-			if (inputValue.value.trim() === '') return;
-			const userInfo = store.userInfo;
-			const data: ClientBehaviorPrivateChat = {
-				type: BehaviorType.LAUNCHPRIVATECHAT,
-				originUserId: userInfo.userId,
-				targetUserId: store.targetChatUserId,
-				data: {
-					data: inputValue.value,
-					type: MessageType.TEXT,
-					origin: MessageOrigin.ME,
-				},
-			};
-			socket.emit(SocketEventType.CLIENT_BEHAVIOR, data);
-			inputValue.value = '';
-			pushMessage(data);
+		function sendMessage(keyup: any) {
+			if (keyup.key === 'Enter') {
+				const userInfo = store.userInfo;
+				const data: ClientBehaviorPrivateChat = {
+					type: BehaviorType.LAUNCHPRIVATECHAT,
+					originUserId: userInfo.userId,
+					targetUserId: store.targetChatUserId,
+					data: {
+						data: inputValue.value,
+						type: MessageType.TEXT,
+						origin: MessageOrigin.ME,
+					},
+				};
+				socket.emit(SocketEventType.CLIENT_BEHAVIOR, data);
+				inputValue.value = '';
+				pushMessage(data);
+			}
 		}
 		watch(
 			() => store.chatList.length,
@@ -116,7 +117,7 @@ export default defineComponent({
 						<message messageList={messageList.value}></message>
 					</div>
 					<div class="lou_chat_main_input">
-						<el-input rows={9} resize="none" class="input_box" type="textarea" v-model={inputValue.value} />
+						<el-input rows={9} resize="none" class="input_box" type="textarea" v-model={inputValue.value} onKeyup={sendMessage} />
 					</div>
 				</div>
 			);
