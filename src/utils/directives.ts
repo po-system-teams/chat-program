@@ -1,11 +1,10 @@
 export const dragDirective = {
 	mounted(el: HTMLElement) {
-		const store = window.$wujie?.props?.appProgramStore;
-		console.log(store, 111);
-		if (!store) return;
-		const mouseDown = store.activeProgram.mouseDown; // 获取拖拽方法
-		const mouseMove = store.activeProgram.mouseMove; // 获取拖拽方法
-		const mouseUp = store.activeProgram.mouseUp; // 获取拖拽方法
+		const { appProgramStore } = window.microApp.getGlobalData();
+		if (!appProgramStore) return;
+		const mouseDown = appProgramStore.activeProgram.mouseDown; // 获取拖拽方法
+		const mouseMove = appProgramStore.activeProgram.mouseMove; // 获取拖拽方法
+		const mouseUp = appProgramStore.activeProgram.mouseUp; // 获取拖拽方法
 		el.onmousedown = (e: MouseEvent) => {
 			mouseDown(e);
 		};

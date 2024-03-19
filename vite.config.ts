@@ -27,5 +27,8 @@ export default defineConfig({
 	},
 	server: {
 		port: 8099,
+		headers: {
+			'Access-Control-Allow-Origin': '*',
+		}
 	},
 });
